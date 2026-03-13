@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import SectionWrapper from "../components/SectionWrapper";
-import { FaArrowRight, FaMobileAlt, FaBrain, FaServer, FaExternalLinkAlt } from "react-icons/fa";
+import { FaArrowRight, FaMobileAlt, FaBrain, FaServer, FaExternalLinkAlt, FaLaptopCode, FaRobot, FaNetworkWired } from "react-icons/fa";
 
 // Assets
 import pic3Img from "../assets/pic3.png";
@@ -13,7 +13,41 @@ const Home = () => {
     return (
         <>
             {/* HERO SECTION */}
-            <SectionWrapper id="hero" className="pt-32 pb-20">
+            <SectionWrapper
+                id="hero"
+                className="pt-32 pb-20"
+                bottomContent={
+                    <motion.div
+                        initial={{ opacity: 0, y: 0 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                            opacity: { delay: 1.5, duration: 1 }
+                        }}
+                        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center cursor-pointer z-20"
+                        onClick={() => {
+                            window.scrollTo({
+                                top: window.innerHeight,
+                                behavior: 'smooth'
+                            });
+                        }}
+                    >
+                        <span className="text-gray-400 text-xs mb-2 font-light tracking-wider">Scroll to explore</span>
+                        <div className="w-[26px] h-[48px] rounded-3xl border-2 border-gray-400 flex justify-center items-start p-1">
+                            <motion.div
+                                animate={{
+                                    y: [0, 16, 0]
+                                }}
+                                transition={{
+                                    duration: 1.5,
+                                    repeat: Infinity,
+                                    repeatType: "loop"
+                                }}
+                                className="w-1.5 h-1.5 rounded-full bg-gray-400 mb-1"
+                            />
+                        </div>
+                    </motion.div>
+                }
+            >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                     {/* Left Content */}
                     <div className="text-left space-y-6">
@@ -165,6 +199,21 @@ const Home = () => {
                             <FaServer className="text-3xl text-green-600 dark:text-green-400 mb-4 group-hover:scale-110 transition-transform" />
                             <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Backend Systems</h3>
                             <p className="text-gray-600 dark:text-gray-400 text-sm">Robust APIs and database architecture with Firebase & Supabase.</p>
+                        </div>
+                        <div className="bg-white dark:bg-deep-black/50 p-8 rounded-2xl border border-gray-200 dark:border-white/10 hover:border-pink-500/50 dark:hover:border-pink-400/50 transition-all group shadow-sm dark:shadow-none">
+                            <FaLaptopCode className="text-3xl text-pink-600 dark:text-pink-400 mb-4 group-hover:scale-110 transition-transform" />
+                            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Website Development</h3>
+                            <p className="text-gray-600 dark:text-gray-400 text-sm">Modern React.js applications with advanced JavaScript logic.</p>
+                        </div>
+                        <div className="bg-white dark:bg-deep-black/50 p-8 rounded-2xl border border-gray-200 dark:border-white/10 hover:border-orange-500/50 dark:hover:border-orange-400/50 transition-all group shadow-sm dark:shadow-none">
+                            <FaRobot className="text-3xl text-orange-600 dark:text-orange-400 mb-4 group-hover:scale-110 transition-transform" />
+                            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Agentic AI Dev</h3>
+                            <p className="text-gray-600 dark:text-gray-400 text-sm">Autonomous Agents capable of performing complex tasks.</p>
+                        </div>
+                        <div className="bg-white dark:bg-deep-black/50 p-8 rounded-2xl border border-gray-200 dark:border-white/10 hover:border-cyan-500/50 dark:hover:border-cyan-400/50 transition-all group shadow-sm dark:shadow-none">
+                            <FaNetworkWired className="text-3xl text-cyan-600 dark:text-cyan-400 mb-4 group-hover:scale-110 transition-transform" />
+                            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">ML Models Development</h3>
+                            <p className="text-gray-600 dark:text-gray-400 text-sm">Custom predictive models using TensorFlow & PyTorch.</p>
                         </div>
                     </div>
 

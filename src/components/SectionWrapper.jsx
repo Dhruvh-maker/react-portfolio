@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const SectionWrapper = ({ children, id, className = "" }) => {
+const SectionWrapper = ({ children, id, className = "", bottomContent }) => {
     return (
         <section id={id} className={`min-h-[calc(100vh-4rem)] flex flex-col justify-center relative py-20 px-4 ${className}`}>
             <motion.div
@@ -13,6 +13,7 @@ const SectionWrapper = ({ children, id, className = "" }) => {
             >
                 {children}
             </motion.div>
+            {bottomContent}
         </section>
     );
 };

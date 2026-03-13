@@ -1,7 +1,7 @@
 import React from "react";
 import SectionWrapper from "../components/SectionWrapper";
 import { motion } from "framer-motion";
-import { FaMobileAlt, FaBrain, FaServer, FaRocket, FaCode, FaPaintBrush } from "react-icons/fa";
+import { FaMobileAlt, FaBrain, FaServer, FaRocket, FaCode, FaPaintBrush, FaLaptopCode, FaRobot, FaNetworkWired } from "react-icons/fa";
 
 const ServiceCard = ({ title, icon, points, index }) => {
     return (
@@ -95,6 +95,36 @@ const Services = () => {
                 "Technical stack selection",
                 "Performance auditing",
                 "Best practices mentorship"
+            ]
+        },
+        {
+            title: "Website Development",
+            icon: <FaLaptopCode size={24} />,
+            points: [
+                "Modern React.js applications",
+                "Advanced JavaScript logic",
+                "Responsive Design",
+                "SEO Optimized Architecture"
+            ]
+        },
+        {
+            title: "Agentic AI Dev",
+            icon: <FaRobot size={24} />,
+            points: [
+                "Autonomous AI Agents",
+                "LangChain & AutoGPT integration",
+                "Complex workflow automation",
+                "Intelligent decision systems"
+            ]
+        },
+        {
+            title: "ML Models Development",
+            icon: <FaNetworkWired size={24} />,
+            points: [
+                "Custom model training",
+                "Predictive analytics solutions",
+                "NLP & Computer Vision",
+                "TensorFlow & PyTorch"
             ]
         }
     ];

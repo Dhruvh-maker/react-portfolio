@@ -5,7 +5,41 @@ import SectionWrapper from "../components/SectionWrapper";
 
 const Hero = () => {
     return (
-        <SectionWrapper id="home" className="pt-32">
+        <SectionWrapper
+            id="home"
+            className="pt-32"
+            bottomContent={
+                <motion.div
+                    initial={{ opacity: 0, y: 0 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                        opacity: { delay: 1.5, duration: 1 }
+                    }}
+                    className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center cursor-pointer z-20"
+                    onClick={() => {
+                        const aboutSection = document.getElementById('about');
+                        if (aboutSection) {
+                            aboutSection.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }}
+                >
+                    <span className="text-gray-400 text-sm mb-2 font-light tracking-wider">Scroll to explore</span>
+                    <div className="w-[35px] h-[64px] rounded-3xl border-4 border-gray-400 flex justify-center items-start p-2">
+                        <motion.div
+                            animate={{
+                                y: [0, 24, 0]
+                            }}
+                            transition={{
+                                duration: 1.5,
+                                repeat: Infinity,
+                                repeatType: "loop"
+                            }}
+                            className="w-3 h-3 rounded-full bg-gray-400 mb-1"
+                        />
+                    </div>
+                </motion.div>
+            }
+        >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                 {/* Left Content */}
                 <div className="text-left space-y-6">
@@ -97,17 +131,6 @@ const Hero = () => {
                     </motion.div>
                 </div>
             </div>
-
-            {/* Scroll Indicator */}
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.5, duration: 1 }}
-                className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center"
-            >
-                <span className="text-xs text-gray-500 mb-2 uppercase tracking-widest">Scroll</span>
-                <div className="w-[1px] h-12 bg-gradient-to-b from-neon-blue to-transparent"></div>
-            </motion.div>
         </SectionWrapper>
     );
 };

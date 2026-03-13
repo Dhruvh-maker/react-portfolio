@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import SectionWrapper from "../components/SectionWrapper";
-import { FaGithub, FaPlay } from "react-icons/fa";
+import { FaGithub, FaPlay, FaGooglePlay } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 
 // Assets
@@ -48,10 +48,11 @@ const projectsData = [
     {
         title: "Darshan Trip",
         description: "Comprehensive bus booking application available on Play Store. Features real-time seat selection and secure payments.",
-        tags: ["Android Native", "Kotlin", "REST API", "Google Maps"],
+        tags: ["Flutter", "Dart", "REST API", "Google Maps"],
         logo: darshanLogo,
         video: darshanVideo,
         github: "#",
+        playStore: "https://play.google.com/store/apps/details?id=com.arkapps.darshantrip&pcampaignid=web_share",
         classNames: {
             border: "hover:border-green-400/50",
             text: "text-green-400",
@@ -108,11 +109,22 @@ const ProjectCard = ({ project, onPlayClick }) => {
                         {project.video && (
                             <button
                                 onClick={() => onPlayClick(project)}
-                                className={`w-full flex items-center justify-center space-x-2 py-3 rounded-lg font-bold transition-all border ${project.classNames.button}`}
+                                className={`flex-1 flex items-center justify-center space-x-2 py-3 rounded-lg font-bold transition-all border ${project.classNames.button}`}
                             >
                                 <FaPlay size={12} />
                                 <span>Watch Demo</span>
                             </button>
+                        )}
+                        {project.playStore && (
+                            <a
+                                href={project.playStore}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={`flex-1 flex items-center justify-center space-x-2 py-3 rounded-lg font-bold transition-all border ${project.classNames.button}`}
+                            >
+                                <FaGooglePlay size={16} />
+                                <span>Play Store</span>
+                            </a>
                         )}
                     </div>
                 </div>
