@@ -7,17 +7,35 @@ export default {
   ],
   theme: {
     extend: {
-      colors: {
-        "deep-black": "#050510",
-        "neon-blue": "#00f3ff",
-        "neon-purple": "#bc13fe",
-        "glass-white": "rgba(255, 255, 255, 0.05)",
-      },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+      },
+      colors: {
+        "pure-black": "#000000",
+        "surface": "#0C0C0C",
+        "surface-light": "#1A1A1A",
+        "border-color": "rgba(255, 255, 255, 0.1)",
+        "gradient-start": "#ff4d4d",
+        "gradient-mid": "#ff007f",
+        "gradient-end": "#ff8800",
+        "ribbon-red": "#d91e1e",
+        "ribbon-crimson": "#b31212",
+        "text-muted": "#A1A1AA"
+      },
+      backgroundImage: {
+        'sunset-gradient': 'linear-gradient(to right, #ffcf75, #ff5c5c, #e81cff)',
       },
       boxShadow: {
-        "neon": "0 0 10px rgba(0, 243, 255, 0.5), 0 0 20px rgba(0, 243, 255, 0.3)",
+        "glass": "0 8px 32px 0 rgba(0, 0, 0, 0.5)",
+      },
+      animation: {
+        'marquee': 'marquee 25s linear infinite',
+      },
+      keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-100%)' },
+        }
       }
     },
   },

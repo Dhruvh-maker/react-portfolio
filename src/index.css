@@ -7,9 +7,9 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #050510;
+  color-scheme: dark;
+  color: #fff;
+  background-color: #000;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -19,38 +19,198 @@
 
 @layer base {
   body {
-    @apply bg-white text-gray-900 dark:bg-deep-black dark:text-white transition-colors duration-300;
+    @apply bg-pure-black text-white selection:bg-surface-light selection:text-white;
     overflow-x: hidden;
   }
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #050510;
+  background: #000;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #00f3ff;
+  background: #333;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #bc13fe;
+  background: #555;
 }
 
-/* Glassmorphism Utilities */
-.glass {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+/* Gradient Text Utility */
+.text-gradient {
+  @apply bg-sunset-gradient bg-clip-text text-transparent;
 }
 
-.neon-border {
-  border: 1px solid rgba(0, 243, 255, 0.3);
-  box-shadow: 0 0 10px rgba(0, 243, 255, 0.1);
+/* Glassmorphism Pills */
+.pill-glass {
+  @apply bg-[#0C0C0C] border border-[rgba(255,255,255,0.08)] rounded-full transition-colors hover:bg-[#151515] hover:border-[rgba(255,255,255,0.2)];
+}
+
+/* Tilted Card Image Container */
+.tilted-card {
+  perspective: 1000px;
+}
+
+.tilted-content {
+  transform: rotateY(-15deg) rotateX(5deg);
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease;
+}
+
+.tilted-card:hover .tilted-content {
+  transform: rotateY(-5deg) rotateX(2deg);
+}
+
+/* Flowing Light Animated Border Card (Sexy Effect) */
+@keyframes spin-gradient {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.glowing-card {
+  position: relative;
+  border-radius: 1.5rem;
+  /* 24px */
+  background: #0C0C0C;
+  /* Inner background */
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* The spinning gradient border */
+.glowing-card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(transparent,
+      transparent,
+      transparent,
+      #ff007f,
+      /* Pink/Magenta */
+      #ffcf75,
+      /* Warm orange/Gold */
+      transparent);
+  animation: spin-gradient 4s linear infinite;
+  z-index: -2;
+  opacity: 0.7;
+}
+
+/* Inner masking card */
+.glowing-card::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  /* The border width */
+  background: #0a0a0a;
+  /* True pitch black or dark grey */
+  border-radius: calc(1.5rem - 1px);
+  z-index: -1;
+}
+
+/* Hover intensifying the flow */
+.glowing-card:hover::before {
+  opacity: 1;
+  background: conic-gradient(transparent,
+      transparent,
+      #ff4d4d,
+      #ff007f,
+      #ffcf75,
+      transparent,
+      transparent);
+  animation-duration: 2.5s;
+}
+
+/* Glowing Pill for rounded skill badges */
+.glowing-pill {
+  position: relative;
+  border-radius: 9999px;
+  background: #0C0C0C;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.glowing-pill::before {
+  content: "";
+  position: absolute;
+  top: -150%;
+  left: -150%;
+  width: 400%;
+  height: 400%;
+  background: conic-gradient(transparent,
+      transparent,
+      transparent,
+      #ff007f,
+      #ffcf75,
+      transparent);
+  animation: spin-gradient 4s linear infinite;
+  z-index: -2;
+  opacity: 0.7;
+}
+
+.glowing-pill::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background: #0a0a0a;
+  border-radius: 9999px;
+  z-index: -1;
+}
+
+.glowing-pill:hover::before {
+  opacity: 1;
+  background: conic-gradient(transparent, transparent, #ff4d4d, #ff007f, #ffcf75, transparent, transparent);
+  animation-duration: 2.5s;
+}
+
+/* Morphing Liquid Orb Effect */
+@keyframes morph {
+  0% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    transform: rotate(0deg) scale(1);
+  }
+
+  50% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    transform: rotate(180deg) scale(1.05);
+  }
+
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.liquid-blob {
+  background: linear-gradient(135deg, #ff007f, #8B5CF6, #3B82F6, #ffcf75);
+  background-size: 300% 300%;
+  animation: morph 8s ease-in-out infinite, gradientMove 8s ease infinite;
+  box-shadow: 0 0 60px rgba(139, 92, 246, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.5);
 }

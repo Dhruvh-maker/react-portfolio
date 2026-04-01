@@ -1,13 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import FooterWidgets from './components/FooterWidgets';
 import Home from './sections/Home';
 import About from './sections/About';
 import Services from './sections/Services';
 import Projects from './sections/Projects';
 import TechStack from './sections/TechStack';
 import Contact from './sections/Contact';
+import Guestbook from './sections/Guestbook';
+
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -28,31 +32,38 @@ const ProjectsPage = () => (
   </>
 );
 
-function App() {
+const AppContent = () => {
+  const location = useLocation();
+
   return (
-    <Router>
+    <div className="bg-pure-black min-h-screen text-white overflow-x-hidden flex flex-col font-sans">
       <ScrollToTop />
-      <div className="bg-gray-50 dark:bg-deep-black min-h-screen text-gray-900 dark:text-white overflow-x-hidden flex flex-col transition-colors duration-300">
-        <div className="fixed inset-0 z-0 pointer-events-none">
-          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-neon-blue/5 rounded-full blur-[120px]"></div>
-          <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-neon-purple/5 rounded-full blur-[120px]"></div>
-        </div>
 
-        <Navbar />
+      <Navbar />
 
-        <main className="relative z-10 flex-grow pt-16">
-          <Routes>
+      <main className="relative z-10 flex-grow pt-28 pb-10">
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
             <Route path="/projects" element={<ProjectsPage />} />
-
             <Route path="/contact" element={<Contact />} />
+            <Route path="/guestbook" element={<Guestbook />} />
           </Routes>
-        </main>
+        </AnimatePresence>
+      </main>
 
-        <Footer />
-      </div>
+      <FooterWidgets />
+      <Footer />
+    </div>
+  );
+};
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   );
 }

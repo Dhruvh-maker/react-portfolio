@@ -1,107 +1,136 @@
 import React from "react";
-import SectionWrapper from "../components/SectionWrapper";
 import { motion } from "framer-motion";
-import { FaEnvelope, FaMapMarkerAlt, FaPhone, FaLinkedin, FaGithub } from "react-icons/fa";
+import { FaEnvelope, FaLinkedin, FaGithub, FaTwitter, FaArrowRight } from "react-icons/fa";
+import SectionWrapper from "../components/SectionWrapper";
 
 const Contact = () => {
     return (
-        <SectionWrapper id="contact" className="py-20">
-            <div className="max-w-5xl mx-auto px-4">
-                <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-                        Let's <span className="text-neon-blue">Connect</span>
-                    </h2>
-                    <div className="w-20 h-1.5 bg-neon-blue mx-auto rounded-full mb-6"></div>
-                    <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
-                        Whether you have a project in mind or just want to chat about AI & Mobile Dev, I'm always open to new opportunities.
-                    </p>
-                </div>
+        <SectionWrapper id="contact" className="pt-24 pb-20 bg-pure-black min-h-screen">
+            <div className="max-w-6xl mx-auto px-4 md:px-8">
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    {/* Contact Info */}
+                {/* Minimalist Header */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    className="mb-16 md:mb-20"
+                >
+                    <p className="text-[#ff007f] font-mono text-xs tracking-[0.25em] uppercase mb-4">04. What's Next?</p>
+                    <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-4">
+                        Get In Touch
+                    </h1>
+                    <p className="text-text-muted text-[15px] max-w-xl leading-relaxed">
+                        Although I'm not currently looking for any new opportunities, my inbox is always open. Whether you have a question or just want to say hi, I'll try my best to get back to you!
+                    </p>
+                </motion.div>
+
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-20">
+
+                    {/* LEFT: Contact Details (Spans 5) */}
                     <motion.div
-                        initial={{ opacity: 0, x: -30 }}
+                        initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        className="space-y-8"
+                        transition={{ duration: 0.6, delay: 0.1 }}
+                        className="md:col-span-5 space-y-10"
                     >
-                        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Contact Information</h3>
-
-                        <div className="glass p-6 rounded-2xl border border-gray-200 dark:border-white/10 hover:border-neon-blue/30 transition-all duration-300">
-                            <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 bg-neon-blue/10 rounded-full flex items-center justify-center text-neon-blue">
-                                    <FaEnvelope size={20} />
-                                </div>
-                                <div>
-                                    <p className="text-sm text-gray-400">Email Me</p>
-                                    <a href="mailto:25dhruvsrivastava@gmail.com" className="text-gray-900 dark:text-white font-medium hover:text-neon-blue transition-colors">
-                                        25dhruvsrivastava@gmail.com
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="glass p-6 rounded-2xl border border-gray-200 dark:border-white/10 hover:border-neon-blue/30 transition-all duration-300">
-                            <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 bg-neon-purple/10 rounded-full flex items-center justify-center text-neon-purple">
-                                    <FaPhone size={20} />
-                                </div>
-                                <div>
-                                    <p className="text-sm text-gray-400">Call Me</p>
-                                    <a href="tel:+918004987795" className="text-gray-900 dark:text-white font-medium hover:text-neon-purple transition-colors">
-                                        +91 8004987795
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="glass p-6 rounded-2xl border border-gray-200 dark:border-white/10 hover:border-neon-blue/30 transition-all duration-300">
-                            <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 bg-green-400/10 rounded-full flex items-center justify-center text-green-400">
-                                    <FaMapMarkerAlt size={20} />
-                                </div>
-                                <div>
-                                    <p className="text-sm text-gray-400">Location</p>
-                                    <p className="text-gray-900 dark:text-white font-medium">Ghaziabad, India</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="flex gap-4 pt-4">
-                            <a href="https://www.linkedin.com/in/dhruv-srivastava-1317932a5/" target="_blank" rel="noopener noreferrer" className="p-3 bg-gray-100 dark:bg-white/5 rounded-full text-gray-600 dark:text-gray-400 hover:text-neon-blue hover:bg-neon-blue/10 dark:hover:text-white dark:hover:bg-neon-blue/20 transition-all">
-                                <FaLinkedin size={24} />
+                        {/* Direct Email */}
+                        <div>
+                            <p className="text-xs font-mono text-gray-500 uppercase tracking-widest mb-3">Direct Line</p>
+                            <a
+                                href="mailto:25dhruvsrivastava@gmail.com"
+                                className="text-white text-lg md:text-xl font-medium hover:text-[#ff007f] transition-colors border-b border-white/10 hover:border-[#ff007f]/50 pb-1"
+                            >
+                                25dhruvsrivastava@gmail.com
                             </a>
-                            <a href="https://github.com/Dhruvh-maker" target="_blank" rel="noopener noreferrer" className="p-3 bg-gray-100 dark:bg-white/5 rounded-full text-gray-600 dark:text-gray-400 hover:text-black hover:bg-gray-200 dark:hover:text-white dark:hover:bg-white/20 transition-all">
-                                <FaGithub size={24} />
-                            </a>
+                        </div>
+
+                        {/* Social Links */}
+                        <div>
+                            <p className="text-xs font-mono text-gray-500 uppercase tracking-widest mb-4">Socials</p>
+                            <div className="flex flex-col gap-4">
+                                <a href="https://linkedin.com/in/dhruv-srivastava-1317932a5/" target="_blank" rel="noreferrer" className="flex items-center gap-4 text-gray-400 hover:text-white transition-colors group w-fit">
+                                    <FaLinkedin size={18} />
+                                    <span className="text-sm font-medium">LinkedIn</span>
+                                    <FaArrowRight size={10} className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-[#ff007f]" />
+                                </a>
+                                <a href="https://github.com/Dhruvh-maker" target="_blank" rel="noreferrer" className="flex items-center gap-4 text-gray-400 hover:text-white transition-colors group w-fit">
+                                    <FaGithub size={18} />
+                                    <span className="text-sm font-medium">GitHub</span>
+                                    <FaArrowRight size={10} className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-[#ff007f]" />
+                                </a>
+                                <a href="https://x.com/DHRUVSR22147335" target="_blank" rel="noreferrer" className="flex items-center gap-4 text-gray-400 hover:text-white transition-colors group w-fit">
+                                    <FaTwitter size={18} />
+                                    <span className="text-sm font-medium">Twitter / X</span>
+                                    <FaArrowRight size={10} className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-[#ff007f]" />
+                                </a>
+                            </div>
+                        </div>
+
+                        {/* Location */}
+                        <div>
+                            <p className="text-xs font-mono text-gray-500 uppercase tracking-widest mb-2 border-l border-[#ff007f] pl-3 py-0.5">
+                                Based in<br /><span className="text-gray-300">Ghaziabad, India</span>
+                            </p>
                         </div>
                     </motion.div>
 
-                    {/* Contact Form */}
+                    {/* RIGHT: Sophisticated Form (Spans 7) */}
                     <motion.div
-                        initial={{ opacity: 0, x: 30 }}
+                        initial={{ opacity: 0, x: 20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        className="glass p-8 rounded-3xl border border-gray-200 dark:border-white/10"
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                        className="md:col-span-7"
                     >
                         <form className="space-y-6">
-                            <div>
-                                <label className="block text-sm font-medium text-gray-400 mb-2">Name</label>
-                                <input type="text" className="w-full bg-gray-50 dark:bg-deep-black/50 border border-gray-300 dark:border-white/10 rounded-lg px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-neon-blue transition-colors" placeholder="Your Name" />
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div className="space-y-2">
+                                    <label className="text-[11px] font-mono text-gray-500 uppercase tracking-widest">Name</label>
+                                    <input
+                                        type="text"
+                                        className="w-full bg-[#0a0a0a] border border-white/5 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#ff007f]/50 focus:bg-[#111] transition-all"
+                                        placeholder="John Doe"
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <label className="text-[11px] font-mono text-gray-500 uppercase tracking-widest">Email</label>
+                                    <input
+                                        type="email"
+                                        className="w-full bg-[#0a0a0a] border border-white/5 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#ff007f]/50 focus:bg-[#111] transition-all"
+                                        placeholder="john@example.com"
+                                    />
+                                </div>
                             </div>
-                            <div>
-                                <label className="block text-sm font-medium text-gray-400 mb-2">Email</label>
-                                <input type="email" className="w-full bg-gray-50 dark:bg-deep-black/50 border border-gray-300 dark:border-white/10 rounded-lg px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-neon-blue transition-colors" placeholder="your@email.com" />
+
+                            <div className="space-y-2">
+                                <label className="text-[11px] font-mono text-gray-500 uppercase tracking-widest">Subject</label>
+                                <input
+                                    type="text"
+                                    className="w-full bg-[#0a0a0a] border border-white/5 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#ff007f]/50 focus:bg-[#111] transition-all"
+                                    placeholder="Mobile App Project"
+                                />
                             </div>
-                            <div>
-                                <label className="block text-sm font-medium text-gray-400 mb-2">Message</label>
-                                <textarea rows="4" className="w-full bg-gray-50 dark:bg-deep-black/50 border border-gray-300 dark:border-white/10 rounded-lg px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-neon-blue transition-colors" placeholder="How can I help you?"></textarea>
+
+                            <div className="space-y-2">
+                                <label className="text-[11px] font-mono text-gray-500 uppercase tracking-widest">Message</label>
+                                <textarea
+                                    rows="5"
+                                    className="w-full bg-[#0a0a0a] border border-white/5 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#ff007f]/50 focus:bg-[#111] transition-all resize-none"
+                                    placeholder="Tell me about your idea..."
+                                ></textarea>
                             </div>
-                            <button type="submit" className="w-full bg-gradient-to-r from-neon-blue to-blue-600 text-black font-bold py-4 rounded-lg hover:opacity-90 transition-opacity shadow-[0_0_20px_rgba(0,243,255,0.3)]">
+
+                            <button
+                                type="submit"
+                                className="inline-flex items-center gap-2 px-8 py-3 bg-white text-black text-sm font-bold rounded-lg hover:bg-gray-200 transition-colors mt-2"
+                            >
                                 Send Message
+                                <FaArrowRight size={12} />
                             </button>
                         </form>
                     </motion.div>
+
                 </div>
             </div>
         </SectionWrapper>
