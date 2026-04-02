@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import SectionWrapper from "../components/SectionWrapper";
 import PageHeader from "../components/PageHeader";
-import { FaGithub, FaPlay, FaGooglePlay } from "react-icons/fa";
+import { FaGithub, FaPlay, FaGooglePlay, FaExternalLinkAlt } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 
 // Assets
 import soloAiLogo from "../assets/soloai.png";
 import darshanLogo from "../assets/darshanlogo.png";
 import ayurscanLogo from "../assets/ayurscan.png";
+import skillGalaxyLogo from "../assets/skillgalaxy.png";
 import soloAiVideo from "../assets/soloai.mp4";
 import darshanVideo from "../assets/darshantrip.mp4";
 import ayurscanVideo from "../assets/ayurscan.mp4";
@@ -44,6 +45,16 @@ const projectsData = [
         video: ayurscanVideo,
         github: "#",
         imageStyle: "object-contain"
+    },
+    {
+        title: "SkillGalaxy",
+        subtitle: "AI-Powered Career Navigator & Roadmap Builder",
+        description: "A full-stack web app where users search any skill or career, and AI generates a detailed, gamified roadmap guiding them to their goal with curated resources, progress tracking, and an interactive 3D interface.",
+        tags: ["React", "Node.js", "Prisma", "Mistral AI", "Three.js"],
+        logo: skillGalaxyLogo,
+        liveDemo: "https://skill-galaxy-psi.vercel.app/",
+        github: "#",
+        imageStyle: "object-cover object-top"
     }
 ];
 
@@ -117,6 +128,17 @@ const ProjectCard = ({ project, onPlayClick, index }) => {
                                     <span>Play Store</span>
                                 </a>
                             )}
+                            {project.liveDemo && (
+                                <a
+                                    href={project.liveDemo}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex-1 flex items-center justify-center space-x-2 py-3 rounded-lg bg-gradient-start/10 hover:bg-gradient-start text-white font-bold transition-all border border-gradient-start/30"
+                                >
+                                    <FaExternalLinkAlt size={14} />
+                                    <span>Live Demo</span>
+                                </a>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -172,14 +194,14 @@ const Projects = () => {
     const [selectedProject, setSelectedProject] = useState(null);
 
     return (
-        <SectionWrapper id="projects" className="pt-24 bg-pure-black min-h-screen">
+        <SectionWrapper id="projects" className="pt-8 bg-pure-black min-h-screen">
             <PageHeader
-                title="MY WORKS"
+                title="VENTURE SHOWCASE"
                 subtitle="CRAFTING DIGITAL EXPERIENCES"
                 italicText="with passion & code."
             />
 
-            <div className="max-w-7xl mx-auto px-4 md:px-8 mt-12 w-full">
+            <div className="max-w-7xl mx-auto px-4 md:px-8 mt-6 w-full">
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {projectsData.map((project, index) => (

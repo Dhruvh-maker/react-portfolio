@@ -87,19 +87,18 @@ const Guestbook = () => {
                     transition={{ delay: 0.5 }}
                     className="max-w-3xl mx-auto mb-32 px-4"
                 >
-                    <div className="bg-[#080808]/80 backdrop-blur-3xl border border-white/10 p-8 rounded-[3rem] shadow-[0_0_50px_rgba(0,0,0,0.5)] group relative">
-                        <div className="absolute inset-0 bg-gradient-to-tr from-[#ff007f]/5 to-transparent rounded-[3rem] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    <div className="glowing-card p-8 rounded-[3rem] group relative">
 
                         <form onSubmit={handleSubmit} className="relative z-10 space-y-6">
                             <div className="flex flex-col md:flex-row items-center gap-6">
                                 <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
-                                    <FaUserCircle size={24} className="text-gray-600" />
+                                    <FaUserCircle size={24} className="text-gray-400" />
                                 </div>
                                 <input
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
                                     placeholder="Your Display Name"
-                                    className="w-full bg-transparent border-b border-white/5 py-3 text-white font-semibold text-xl focus:outline-none focus:border-[#ff007f]/50 transition-all placeholder:text-gray-800"
+                                    className="w-full bg-transparent border-b border-white/10 py-3 text-white font-semibold text-xl focus:outline-none focus:border-[#ff007f]/50 transition-all placeholder:text-white/40"
                                 />
                             </div>
 
@@ -108,11 +107,11 @@ const Guestbook = () => {
                                 onChange={(e) => setMessage(e.target.value)}
                                 rows="2"
                                 placeholder="Write something memorable..."
-                                className="w-full bg-transparent border-0 py-4 text-gray-300 text-lg focus:outline-none placeholder:text-gray-800 resize-none"
+                                className="w-full bg-transparent border-0 py-4 text-gray-300 text-lg focus:outline-none placeholder:text-white/40 resize-none"
                             ></textarea>
 
                             <div className="flex items-center justify-between pt-4 border-t border-white/5">
-                                <span className="text-[10px] font-mono text-gray-700 uppercase tracking-widest">
+                                <span className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">
                                     {message.length} / 500
                                 </span>
                                 <motion.button

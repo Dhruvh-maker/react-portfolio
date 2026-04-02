@@ -28,50 +28,19 @@ const FooterWidgets = () => {
 
   useEffect(() => {
     const fetchLocation = async () => {
-      setLoading(true);
       try {
-        let data = {};
-        
-        // Try Provider 1: ipapi.co (HTTPS friendly)
-        try {
-          const res = await fetch('https://ipapi.co/json/');
-          data = await res.json();
-        } catch (e) {
-          console.warn("ipapi.co failed, trying fallback...");
-        }
-
-        // Try Provider 2: ip-api.com (Fallback)
-        if (!data.latitude || !data.city || data.error) {
-          try {
-            // Note: ip-api.com free tier is HTTP only, might fail on production HTTPS
-            // Using a different HTTPS-friendly fallback
-            const res = await fetch('https://ipwho.is/');
-            const fallbackData = await res.json();
-            if (fallbackData.success) {
-              data = {
-                latitude: fallbackData.latitude,
-                longitude: fallbackData.longitude,
-                city: fallbackData.city
-              };
-            }
-          } catch (e) {
-            console.warn("All location fallbacks failed.");
-          }
-        }
+        const res = await fetch('https://ipapi.co/json/');
+        const data = await res.json();
 
         if (data.latitude && data.longitude) {
           const dist = calculateDistance(data.latitude, data.longitude, GHAZIABAD_LAT, GHAZIABAD_LON);
           setDistance(dist);
           setVisitorCity(data.city || "Earth");
-        } else {
-          setVisitorCity("Earth");
-          setDistance(null);
         }
       } catch (err) {
-        console.error('Final location fetch error:', err);
-        setVisitorCity("Earth");
+        console.error('Failed to fetch location data', err);
       } finally {
-        setTimeout(() => setLoading(false), 800);
+        setLoading(false);
       }
     };
 

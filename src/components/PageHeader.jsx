@@ -11,7 +11,7 @@ const XLogo = () => (
 
 const PageHeader = ({ title, subtitle, italicText, isHome = false, xLink = "#" }) => {
     return (
-        <div className={`relative w-full flex flex-col items-center justify-center text-center overflow-hidden z-10 ${isHome ? "h-[65vh] md:h-[75vh] pt-0 pb-12" : "min-h-[40vh] py-16"}`}>
+        <div className={`relative w-full flex flex-col items-center justify-center text-center overflow-hidden z-10 ${isHome ? "h-[65vh] md:h-[75vh] pt-0 pb-12" : "pt-4 pb-12"}`}>
             {/* Subtle giant ambient glow behind text */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-white/5 rounded-full blur-[120px] pointer-events-none mix-blend-screen opacity-50"></div>
 

@@ -1,5 +1,6 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import spinImg from "../assets/spin.png";
 import { 
     FaReact, FaNodeJs, FaPython, FaDocker, FaAws, FaGithub 
 } from "react-icons/fa";
@@ -9,6 +10,13 @@ import {
 } from "react-icons/si";
 
 const TechStack = () => {
+    const sectionRef = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: sectionRef,
+        offset: ["start end", "end start"]
+    });
+
+    const rotate = useTransform(scrollYProgress, [0, 1], [0, 720]);
     const skills = [
         { name: "ReactJS", icon: <FaReact className="text-[#61DAFB]" /> },
         { name: "NextJS", icon: <SiNextdotjs className="text-white" /> },
@@ -31,21 +39,42 @@ const TechStack = () => {
     const MARQUEE_WORDS = [
         "CAPTIVATING", "USER-FRIENDLY", "ADAPTIVE", "FLUID", "FUTURE-PROOF", "SEO-READY", "IMMERSIVE"
     ];
-
     return (
-        <section id="tech-stack" className="py-24 bg-pure-black relative overflow-hidden min-h-[800px] flex flex-col justify-between">
-            <div className="max-w-5xl mx-auto px-4 w-full flex-grow flex flex-col items-center pt-10">
-                {/* Header Section */}
+        <section id="tech-stack" ref={sectionRef} className="py-24 bg-pure-black relative overflow-hidden min-h-[800px] flex flex-col justify-between">
+            
+            <div className="max-w-5xl mx-auto px-4 w-full flex-grow flex flex-col items-center pt-10 relative z-10">
+                {/* Header Section with Spinner Background */}
                 <motion.div 
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-center mb-16"
+                    className="text-center mb-16 relative w-full flex flex-col items-center justify-center p-12 overflow-visible"
                 >
-                    <span className="text-text-muted font-mono text-sm tracking-[0.2em] uppercase mb-4 block">
+                    {/* Background Spin - Mirrored and Joined, centered behind text */}
+                    <motion.div 
+                        style={{ rotate }}
+                        className="absolute inset-0 flex items-center justify-center pointer-events-none z-[-1] translate-y-[-150px]"
+                    >
+                        <div className="relative w-[350px] h-[350px] flex items-center justify-center">
+                            {/* Original */}
+                            <img 
+                                src={spinImg} 
+                                alt="Background Spin"
+                                className="absolute inset-0 w-full h-full object-contain filter drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] brightness-110 opacity-70"
+                            />
+                            {/* Mirrored Copy */}
+                            <img 
+                                src={spinImg} 
+                                alt="Background Spin Mirror"
+                                className="absolute inset-0 w-full h-full object-contain filter drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] brightness-110 opacity-70 scale-y-[-1]"
+                            />
+                        </div>
+                    </motion.div>
+
+                    <span className="text-text-muted font-mono text-sm tracking-[0.2em] uppercase mb-4 block relative z-10">
                         MY SKILLSET
                     </span>
-                    <h2 className="text-5xl md:text-7xl font-black text-white tracking-tight">
+                    <h2 className="text-5xl md:text-7xl font-black text-white tracking-tight relative z-10">
                         The Magic <br className="md:hidden" /><span className="text-gradient italic font-serif pr-2">Behind</span>
                     </h2>
                 </motion.div>
@@ -73,7 +102,7 @@ const TechStack = () => {
             <div className="relative h-[250px] mt-24 w-full flex items-center justify-center overflow-hidden">
                 
                 {/* Ribbon 1 - Angled Right */}
-                <div className="absolute w-[120%] h-16 bg-ribbon-red transform rotate-2 top-20 flex items-center shadow-2xl z-10 box-border overflow-hidden">
+                <div className="absolute w-[120%] h-16 bg-ribbon-red transform rotate-2 top-20 flex items-center shadow-2xl z-10 box-border overflow-hidden border-y border-white/5">
                     <div className="flex animate-marquee whitespace-nowrap min-w-full items-center">
                         {[...Array(2)].map((_, i) => (
                             <div key={`ribbon1-${i}`} className="flex items-center">

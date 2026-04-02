@@ -13,7 +13,8 @@ import meImg from "../assets/me.png";
 import soloAiLogo from "../assets/soloai.png";
 import darshanLogo from "../assets/darshanlogo.png";
 import ayurscanLogo from "../assets/ayurscan.png";
-
+import earthVideo from "../assets/earth.mp4";
+import skillGalaxyLogo from "../assets/skillgalaxy.png";
 const CAROUSEL_IMAGES = [
     dhruv1Img,
     dhruv2Img,
@@ -204,21 +205,42 @@ const Home = () => {
             {/* ABOUT PREVIEW */}
             <section className="py-24 bg-[#080808] border-y border-white/5">
                 <div className="max-w-7xl mx-auto px-4 md:px-8">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-stretch">
+                        {/* Left: Earth Globe Card */}
                         <div className="order-2 md:order-1 flex justify-center">
-                            <div className="glowing-card w-full max-w-sm h-80 p-8 flex flex-col justify-center">
-                                <div className="text-white relative z-10">
-                                    <h3 className="font-bold text-xl mb-4 text-gradient">Education & Experience</h3>
-                                    <ul className="space-y-4 my-2 text-sm text-gray-400">
-                                        <li><strong className="text-white">B.Tech IT</strong> - KIET Group of Institutions (2024-2028)</li>
-                                        <li><strong className="text-white">Flutter Intern</strong> - Digontom Pvt Ltd</li>
-                                        <li><strong className="text-white">Android Coordinator</strong> - Innogeeks Tech Club</li>
-                                        <li><strong className="text-white">AWS Certified</strong> - Cloud & AI Practitioner</li>
-                                    </ul>
+                            <div className="glowing-card overflow-hidden relative rounded-3xl w-full h-[420px] md:h-[480px]">
+                                <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover z-0">
+                                    <source src={earthVideo} type="video/mp4" />
+                                </video>
+                                <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-transparent z-[1]" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-[1]" />
+                                <div className="relative z-10 p-6 md:p-8 flex flex-col justify-between h-full">
+                                    <div>
+                                        <span className="text-gray-400 font-mono text-[10px] uppercase tracking-[0.4em] block mb-2">Available Globally</span>
+                                        <h3 className="text-2xl md:text-3xl font-black text-white tracking-tight leading-tight">Adaptable across<br />time zones</h3>
+                                    </div>
+                                    <div className="flex flex-col gap-4">
+                                        <div className="flex flex-wrap gap-2">
+                                            {[{ code: 'IN', name: 'India', active: true }, { code: 'GB', name: 'UK' }, { code: 'US', name: 'USA' }, { code: 'AE', name: 'Dubai' }].map((loc) => (
+                                                <div key={loc.code} className={`px-3 py-1.5 rounded-full text-[10px] font-mono uppercase tracking-wider flex items-center gap-1.5 transition-all ${loc.active ? 'bg-[#ff007f]/15 border border-[#ff007f]/40 text-[#ff007f]' : 'bg-black/40 border border-white/10 text-gray-400'}`}>
+                                                    <span className="font-bold">{loc.code}</span>
+                                                    <span>{loc.name}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                        <div className="flex items-center gap-3 bg-black/60 backdrop-blur-md px-4 py-2.5 rounded-xl border border-white/10 self-start">
+                                            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse shadow-[0_0_8px_rgba(74,222,128,0.6)]" />
+                                            <div>
+                                                <span className="text-[9px] text-gray-400 uppercase tracking-widest block" style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>Remote</span>
+                                                <span className="text-white font-bold text-base" style={{ fontFamily: "'Playfair Display', serif" }}>India</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="order-1 md:order-2">
+                        {/* Right: Who Am I text */}
+                        <div className="order-1 md:order-2 flex flex-col justify-center">
                             <h2 className="text-4xl md:text-5xl font-black text-white mb-6 tracking-tight">Who am I?</h2>
                             <p className="text-text-muted text-lg mb-8 leading-relaxed">
                                 I manage the entire stack with a focus on clean, reusable code. I've developed scalable apps featuring role-based access, local caching, and seamless Google Authentication. Outside of shipping top-tier apps, I mentor students in Flutter development.
@@ -230,6 +252,7 @@ const Home = () => {
                     </div>
                 </div>
             </section>
+
 
             {/* SERVICES */}
             <section className="py-32">
@@ -282,14 +305,14 @@ const Home = () => {
             </section>
 
             {/* FEATURED PROJECTS */}
-            <section className="py-32 bg-[#080808] border-y border-white/5">
+            <section className="py-16 bg-[#080808] border-y border-white/5">
                 <div className="max-w-7xl mx-auto px-4 md:px-8">
-                    <div className="text-center mb-20">
+                    <div className="text-center mb-12">
                         <span className="text-text-muted font-mono text-sm tracking-widest uppercase block mb-4">Portfolio</span>
-                        <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight">Featured Work</h2>
+                        <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight text-gradient">VENTURE SHOWCASE</h2>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         {/* Solo AI */}
                         <div className="glowing-card group flex flex-col h-[460px]">
                             {/* Logo Area */}
@@ -356,6 +379,28 @@ const Home = () => {
                                 <Link to="/projects" className="w-full block text-center py-3 bg-gradient-start/10 border border-gradient-start/30 hover:bg-gradient-start text-white font-bold transition-colors">
                                     View details
                                 </Link>
+                            </div>
+                        </div>
+
+                        {/* SkillGalaxy */}
+                        <div className="glowing-card group flex flex-col h-[460px]" style={{ animationDelay: '1.2s' }}>
+                            {/* Logo Area */}
+                            <div className="h-52 bg-black relative flex items-center justify-center border-b border-white/5 overflow-hidden rounded-t-[24px]">
+                                <img src={skillGalaxyLogo} alt="SkillGalaxy" className="h-full w-full object-cover object-top z-0 group-hover:scale-105 transition-transform duration-500" />
+                            </div>
+                            <div className="relative z-10 p-8 flex-grow flex flex-col">
+                                <h3 className="text-2xl font-bold text-white mb-2">SkillGalaxy</h3>
+                                <p className="text-gray-400 text-sm mb-6 flex-grow">
+                                    AI-Powered Career Navigator. Search any skill or career and get a gamified, interactive 3D roadmap with curated resources.
+                                </p>
+                                <div className="flex flex-wrap gap-2 mb-8">
+                                    <span className="px-3 py-1 text-xs font-mono rounded-full bg-black border border-white/10 text-gray-300">React</span>
+                                    <span className="px-3 py-1 text-xs font-mono rounded-full bg-black border border-white/10 text-gray-300">Node.js</span>
+                                    <span className="px-3 py-1 text-xs font-mono rounded-full bg-black border border-white/10 text-gray-300">Mistral AI</span>
+                                </div>
+                                <a href="https://skill-galaxy-psi.vercel.app/" target="_blank" rel="noreferrer" className="w-full text-center py-3 bg-gradient-start/10 border border-gradient-start/30 hover:bg-gradient-start text-white font-bold transition-colors block rounded-lg">
+                                    Live Demo
+                                </a>
                             </div>
                         </div>
                     </div>
