@@ -1,9 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FaEnvelope, FaLinkedin, FaGithub, FaTwitter, FaArrowRight } from "react-icons/fa";
 import SectionWrapper from "../components/SectionWrapper";
 
 const Contact = () => {
+    const [result, setResult] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const onSubmit = async (event) => {
+        event.preventDefault();
+        setIsSubmitting(true);
+        setResult("Sending...");
+        
+        const formData = new FormData(event.target);
+        formData.append("access_key", "7e1d6e86-a872-4b59-a8c1-a8518b922693");
+
+        try {
+            const response = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                setResult("Message sent successfully!");
+                event.target.reset();
+            } else {
+                console.log("Error", data);
+                setResult(data.message);
+            }
+        } catch (error) {
+            console.log("Error", error);
+            setResult("Failed to send message. Please try again.");
+        } finally {
+            setIsSubmitting(false);
+            setTimeout(() => {
+                setResult("");
+            }, 5000);
+        }
+    };
+
     return (
         <SectionWrapper id="contact" className="pt-24 pb-20 bg-pure-black min-h-screen">
             <div className="max-w-6xl mx-auto px-4 md:px-8">
@@ -83,12 +120,14 @@ const Contact = () => {
                         transition={{ duration: 0.6, delay: 0.2 }}
                         className="md:col-span-7"
                     >
-                        <form className="space-y-6">
+                        <form onSubmit={onSubmit} className="space-y-6">
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                 <div className="space-y-2">
                                     <label className="text-[11px] font-mono text-gray-500 uppercase tracking-widest">Name</label>
                                     <input
                                         type="text"
+                                        name="name"
+                                        required
                                         className="w-full bg-[#0a0a0a] border border-white/5 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#ff007f]/50 focus:bg-[#111] transition-all"
                                         placeholder="John Doe"
                                     />
@@ -97,6 +136,8 @@ const Contact = () => {
                                     <label className="text-[11px] font-mono text-gray-500 uppercase tracking-widest">Email</label>
                                     <input
                                         type="email"
+                                        name="email"
+                                        required
                                         className="w-full bg-[#0a0a0a] border border-white/5 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#ff007f]/50 focus:bg-[#111] transition-all"
                                         placeholder="john@example.com"
                                     />
@@ -107,6 +148,8 @@ const Contact = () => {
                                 <label className="text-[11px] font-mono text-gray-500 uppercase tracking-widest">Subject</label>
                                 <input
                                     type="text"
+                                    name="subject"
+                                    required
                                     className="w-full bg-[#0a0a0a] border border-white/5 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#ff007f]/50 focus:bg-[#111] transition-all"
                                     placeholder="Mobile App Project"
                                 />
@@ -115,19 +158,31 @@ const Contact = () => {
                             <div className="space-y-2">
                                 <label className="text-[11px] font-mono text-gray-500 uppercase tracking-widest">Message</label>
                                 <textarea
+                                    name="message"
+                                    required
                                     rows="5"
                                     className="w-full bg-[#0a0a0a] border border-white/5 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#ff007f]/50 focus:bg-[#111] transition-all resize-none"
                                     placeholder="Tell me about your idea..."
                                 ></textarea>
                             </div>
 
-                            <button
-                                type="submit"
-                                className="inline-flex items-center gap-2 px-8 py-3 bg-white text-black text-sm font-bold rounded-lg hover:bg-gray-200 transition-colors mt-2"
-                            >
-                                Send Message
-                                <FaArrowRight size={12} />
-                            </button>
+                            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-2">
+                                <button
+                                    type="submit"
+                                    disabled={isSubmitting}
+                                    className={`inline-flex items-center gap-2 px-8 py-3 text-sm font-bold rounded-lg transition-colors ${
+                                        isSubmitting ? "bg-gray-500 text-gray-300 cursor-not-allowed" : "bg-white text-black hover:bg-gray-200"
+                                    }`}
+                                >
+                                    {isSubmitting ? "Sending..." : "Send Message"}
+                                    {!isSubmitting && <FaArrowRight size={12} />}
+                                </button>
+                                {result && (
+                                    <span className={`text-sm font-medium ${result.includes("success") ? "text-green-400" : "text-red-400"}`}>
+                                        {result}
+                                    </span>
+                                )}
+                            </div>
                         </form>
                     </motion.div>
 
